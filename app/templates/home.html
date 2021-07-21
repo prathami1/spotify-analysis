@@ -1,0 +1,153 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="static/css/styles.css">
+<title>Sentimental Analysis - Spotify</title>
+<style>
+h1 {font-size:100px;}
+h6 {font-size: 20px}
+h2 {font-size: 60px;}
+body {font-size:16px;}
+.padded {
+  margin-right: 500px;
+  margin-left: 500px;
+}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+<head></head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #0095ff;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.logo.wine/a/logo/Spotify/Spotify-Icon-Logo.wine.svg" width="50" height="50" class="d-inline-block align-top" alt="">
+
+            </a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#currentmood">Mood</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#playlistinfo">Playlist</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#designplaylist">Create</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+<body>
+    <center>
+        <br>
+        <h1 style="color: rgb(16, 227, 16);">Spotify Sentiment Analysis</h1>
+        <h6>Spotify Sentiment Analysis is a Spotify Extension that provides rich playlist information, curates a playlist based on specific factors, and predicts your mood based on your music listening habits.</h6>
+        <h6>Feel free to view your spotify account's statistics, and design your own playlist based on factors such as danceability, acousticness, energy, and more!</h6>
+    </center>
+    <br>
+    <br>
+    <center>
+        <h2 style="color: rgb(16, 227, 16);">Current Mood</h2>
+        <h4>You Are Currently {{recently_played_info['emotion']}}!</h4>
+        <table class = "styled-table">
+            <thead>
+                <tr>
+                    <th>Danceability</th>
+                    <th>Energy</th>
+                    <th>Tempo</th>
+                    <th>What Mood are You In?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> {{ recently_played_info['averages']['Danceability'] }} </td>
+                    <td> {{ recently_played_info['averages']['Energy'] }} </td>
+                    <td> {{ recently_played_info['averages']['Tempo'] }} </td>
+                    <td> {{ recently_played_info['emotion'] }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <h2 style="color: rgb(16, 227, 16);">Mood History</h2>
+        <img style="margin-left:auto; margin-right:auto; width: 50%; display:block;" src="/mood.png"/>
+        <br>
+        <br>
+        <h2 style="color: rgb(16, 227, 16);">Playlist Classification</h2>
+        <table class = "styled-table">
+            <thead>
+                <tr>
+                    <th>Your Playlist Name</th>
+                    <th>Danceability</th>
+                    <th>Energy</th>
+                    <th>Tempo</th>
+                    <th>What Mood is Your Playlist?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in playlist_info %}
+                    <tr>
+                        <th> {{ info['name'] }} </th>
+                        <td> {{ info['averages']['Danceability'] }} </td>
+                        <td> {{ info['averages']['Energy'] }} </td>
+                        <td> {{ info['averages']['Tempo'] }} </td>
+                        <td> {{ info['emotion'] }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <h2 style="color: rgb(16, 227, 16);">Design Your Own Playlist</h2>
+        <h5>Design your own playlist based on the six factors labeled below (Acousticness, Danceability, Liveness, etc)!</h5>
+        <div class="padded">
+          <p>{{wtf.quick_form(form)}}</p>
+        </div>
+        <p>
+            {% if form_submit_msg['playlist_url'] %}
+            <a href={{form_submit_msg['playlist_url']}} target="_blank" style="color:greenyellow"><p style="text-align:center;">Playlist URL</p></a> 
+            {% endif %}
+          </p> 
+          {% if form_submit_msg['recommendations'] %}
+          <table class = "styled-table">
+            <thead>
+                <tr>
+                    <th>Song Name</th>
+                    <th>Song Artist</th>
+                    <th>Link to Song</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in form_submit_msg['recommendations'] %}
+                    <tr>
+                        <th> {{ info['title'] }} </th>
+                        <td> {{ info['artist'] }} </td>
+                        <td> <a href={{ info['link'] }} target="_blank" style="color:greenyellow">Click Here!</a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </center>
+    <center>
+        <br>
+        <footer>
+            Built By Pratham I.
+        </footer>
+        <br>
+    </center>
+</body>
+</html>
+{% endblock %}
