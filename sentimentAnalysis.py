@@ -73,7 +73,18 @@ def analyze_text_sentiment_batch(texts):
 
     return res
 
+for index, weight in analyze(weight):
+        logging.info("Main    : before joining thread %d.", index)
+        thread.join()
+        logging.info("Main    : weight %d done", index)
+        logging.info("Main    : create and start weight %d.", index)
+        x = weighting.Weight(target=weight_function, args=(texts[index], index,))
+        weights.append(x)
+        x.start()
+    return res
+
 if __name__ == '__main__':
     text = "Bharath is an amazing person"
     analysis = analyze_text_sentiment_workaround(text)
     print(analysis)
+    
