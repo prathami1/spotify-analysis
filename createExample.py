@@ -101,3 +101,10 @@ if __name__ == "__main__":
     df = df.drop(columns='Lyrics')
     print(df)
     df.to_csv("example_data_clean.csv")
+# def saveDataFrame():
+        #res = sentiment_analysis.analyze_text_sentiment_batch(all_lyrics[i: min(i+batch_size, len(all_lyrics))])
+        #sent_score += [r['score'] for r in res]
+        #sent_mag += [r['magnitude'] for r in res]
+        #save_df = pd.DataFrame(data=[sent_score, sent_mag])
+        #save_df.to_csv("temp_save/temp" + str(i) + ".csv")
+
