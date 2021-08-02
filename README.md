@@ -2,7 +2,7 @@
 An analysis of one's Spotify Account with the use of their listening habits. Built with HTML + Flask, it provides rich playlist information, curates a playlist based on specific factors, and predicts one's mood based on their music listening habits.
 
 ## How it works
-Utilizing both the Spotify API along with Google's NLP API, this application can generate a better emotion classifier, as well as providing visualizations on user's insights with a fresh prespective. 
+Utilizing both the Spotify API along with Google's Natural Language Processing API, this application can generate a better emotion classifier, as well as providing visualizations on user's insights with a fresh prespective. 
 
 ### Authentication
 When the user first visits the web application, they are prompted to link their Spotify account. During this process, the backend portion of the app generates a JSON header to send to Spotify's server. This authentication token permits the service to access the user's account for the duration of one browser session, so if the user refreshes the page, the application keeps the token alive with the use of a refresh token (in order to convey to Spotify that the session was still logged in). 
