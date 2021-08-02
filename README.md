@@ -47,9 +47,9 @@ Here is an example of the playlist being added to the user's Spotify account aut
 - Pandas Framework
 - MatPlotLib
 - BeautifulSoup
+- WTF Forms Module
 - HTML/CSS
 - Spotify API
 - Google Natural Language Processing API
 - Spotify OAUTH Token
 - Genius API
-- WTF Forms
