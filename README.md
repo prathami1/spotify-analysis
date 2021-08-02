@@ -18,7 +18,7 @@ Once the user logs in to their Spotify account and grants all of the necessary p
 When a user is feeling a paticular mood, they typically want to listen to music that fits their specifc taste at that time. Due to this, the program implements a feature that allows the user to input specific metrics they are interested in listening to (such as danceability, tempo, happiness, etc.) at the moment. After submitting these specific metrics, the program generates a playlist with a configurable amount of songs (up to 100) that satisfies the user's requriements. Along with providing a URL to the playlist and each specific song (with their mood scores as well), the program automatically adds the playlist to the user's Spotify account so that they can start listening immeddiately. 
 
 ## Application in Action 
-Here are screenshots of the application in action, showcasing its functionality.
+#### Here are screenshots of the application in action, showcasing its functionality.
 
 Here is an image of the user's dashboard, after they have logged into their Spotify Account.
 ![](img/img1.png)
@@ -40,3 +40,16 @@ Here is an image of the playlist that the program curated for the user's paticul
 
 Here is an example of the playlist being added to the user's Spotify account automatically, in favor of convenience for the user.
 ![](img/img9.png)
+
+## Dependencies Utilized
+- Python
+- Flask
+- Pandas Framework
+- MatPlotLib
+- BeautifulSoup
+- HTML/CSS
+- Spotify API
+- Google Natural Language Processing API
+- Spotify OAUTH Token
+- Genius API
+- WTF Forms
