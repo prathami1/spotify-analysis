@@ -84,7 +84,6 @@ for index, weight in analyze(weight):
     return res
 
 if __name__ == '__main__':
-    text = "Bharath is an amazing person"
     analysis = analyze_text_sentiment_workaround(text)
     print(analysis)
     
